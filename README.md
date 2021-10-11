@@ -13,7 +13,8 @@ Comandos disponíveis para execução:
 - Find
 - FC
 - Doskey (quando executado permite usar a tecla F7)
-- Tecla F7 (quando pressionada mostra a listagem de todas as linhas de comandos usadas até o momento).
+- Tecla F7 (quando pressionada mostra a listagem de todas as linhas de comandos usadas até o momento)
+
 Exemplos de linhas de comandos válidas:
 - C:\pasta1>Dir D:\teste
 - C:\pasta1>CD ..\teste2
