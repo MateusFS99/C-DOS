@@ -69,8 +69,8 @@ void exibeDir(Diretorio *D, int *qtdearq, int *tamtotal) {
 				aux = aux -> prox;	
 			}
 		}
-		exibeDir(D -> head,&*qtdearq,&*tamtotal);
-		exibeDir(D -> tail,&*qtdearq,&*tamtotal);	
+		exibeDir(D -> head, &*qtdearq, &*tamtotal);
+		exibeDir(D -> tail, &*qtdearq, &*tamtotal);	
 	}
 }
 
@@ -327,7 +327,7 @@ void insereLinhas(Diretorio *D, char comand[]) {
 	else {
 		
 		scanf(" %[^\n]", linha);
-		while(!strcmp(linha, "0")){
+		while(!strcmp(linha, "0")) {
 			
 			criaLinhaNova(aux, linha);
 			scanf(" %[^\n]", linha);
@@ -362,7 +362,7 @@ void excluiLinhas(Arquivo *A) {
 	}
 }
 
-void deletaArq(Diretorio **D,char comand[]) {
+void deletaArq(Diretorio **D, char comand[]) {
 	
 	int i;
 	Arquivo *A, *auxA = NULL;
@@ -371,7 +371,7 @@ void deletaArq(Diretorio **D,char comand[]) {
 	for(i = 4; i < strlen(comand); i++)
 		arq[i - 4] = comand[i];
 	A = (*D) -> larq;	
-	while(A != NULL && !strcmp(A -> nomearq, arq)){
+	while(A != NULL && !strcmp(A -> nomearq, arq)) {
 		
 		auxA = A;
 		A = A -> prox;	
@@ -424,22 +424,22 @@ void removeDirs(Diretorio *D) {
 	}	
 }
 
-void removeDir(Diretorio **D,char comand[]){
+void removeDir(Diretorio **D, char comand[]) {
 	
 	int i;
 	char dir[100];
 	Diretorio *aux = (*D) -> head, *aux2 = NULL;
 	
-	for(i = 3 ; i < strlen(comand) ; i++)
-		dir[i-3] = comand[i];
-	while(aux != NULL && !strcmp(aux->nomedir,dir)){
+	for(i = 3; i < strlen(comand); i++)
+		dir[i - 3] = comand[i];
+	while(aux != NULL && !strcmp(aux -> nomedir, dir)) {
 		
 		aux2 = aux;
 		aux = aux -> tail;
 	}
 	if(aux == NULL)
 		printf("O sistema nao pode encontrar o diretorio especificado.\n");
-	else{
+	else {
 		
 		if(aux -> larq != NULL)
 			removeArqs(aux -> larq);
@@ -458,7 +458,7 @@ void removeDir(Diretorio **D,char comand[]){
 	}	
 }
 
-void removeUni(Unidade **U, char comand[]){
+void removeUni(Unidade **U, char comand[]) {
 	
 	Unidade *auxU;
 	
@@ -475,7 +475,7 @@ void removeUni(Unidade **U, char comand[]){
 		auxU = (*U) -> bottom;
 	else if((*U) -> bottom == NULL)
 		auxU = (*U) -> top;
-	else{
+	else {
 		
 		auxU = (*U) -> top;
 		auxU -> bottom = (*U) -> bottom;
@@ -483,7 +483,7 @@ void removeUni(Unidade **U, char comand[]){
 	free(U);	
 }
 
-void mostraArq(Diretorio *D, char comand[]){
+void mostraArq(Diretorio *D, char comand[]) {
 	
 	int i;
 	char arq[100];
@@ -491,21 +491,21 @@ void mostraArq(Diretorio *D, char comand[]){
 	ConteudoArq *auxC;
 	Linha *auxL;
 	
-	for(i = 5 ; i < strlen(comand) ; i++)
-		arq[i-5] = comand[i];
-	while(aux != NULL && !strcmp(aux->nomearq,arq))
+	for(i = 5; i < strlen(comand); i++)
+		arq[i - 5] = comand[i];
+	while(aux != NULL && !strcmp(aux -> nomearq, arq))
 		aux = aux -> prox;
 	if(aux == NULL)
 		printf("O sistema nao pode encontrar o arquivo especificado.\n");
-	else{
+	else {
 		
 		auxC = aux -> conteudoarq;
-		while(auxC != NULL){
+		while(auxC != NULL) {
 			
 			auxL = auxC -> linha;
-			while(auxL != NULL){
+			while(auxL != NULL) {
 				
-				printf("%c",auxL->letra);
+				printf("%c", auxL -> letra);
 				auxL = auxL -> prox;
 			}
 			printf("\n");
@@ -514,7 +514,7 @@ void mostraArq(Diretorio *D, char comand[]){
 	}			
 }
 
-void dosKey(void){
+void dosKey(void) {
 	
 	int i = 1, op;
 	char linha[100];
@@ -523,20 +523,20 @@ void dosKey(void){
 	op = getch();
 	while(op != 63)
 		op = getch();
-	while(!feof(hist)){
+	while(!feof(hist)) {
 		
-		fscanf(hist," %[^\n]",linha);
-		printf("%d: %s\n",i,linha);
+		fscanf(hist, " %[^\n]", linha);
+		printf("%d: %s\n", i, linha);
 		i++;
 	}
 	fclose(hist);
 }
 
-Linha *copiaLinha(Linha *aux){
+Linha *copiaLinha(Linha *aux) {
 	
 	Linha *nova, *auxL;
 	
-	while(aux != NULL){
+	while(aux != NULL) {
 		
 		Linha *auxL2 = (Linha*)malloc(sizeof(Linha));
 		
@@ -554,11 +554,11 @@ Linha *copiaLinha(Linha *aux){
 	return nova;
 }
 
-ConteudoArq *copiaConteudo(ConteudoArq *aux){
+ConteudoArq *copiaConteudo(ConteudoArq *aux) {
 	
 	ConteudoArq *nova, *auxC;
 	
-	while(aux != NULL){
+	while(aux != NULL) {
 		
 		ConteudoArq *auxC2 = (ConteudoArq*)malloc(sizeof(ConteudoArq));
 		
@@ -577,28 +577,28 @@ ConteudoArq *copiaConteudo(ConteudoArq *aux){
 	return nova;
 }
 
-Arquivo *criaCopiaArq(Arquivo *A){
+Arquivo *criaCopiaArq(Arquivo *A) {
 	
 	Arquivo *nova = (Arquivo*)malloc(sizeof(Arquivo));
 	
-	strcpy(nova->nomearq,A->nomearq);
-	strcpy(nova->data,A->data);
-	strcpy(nova->hora,A->hora);
+	strcpy(nova -> nomearq, A -> nomearq);
+	strcpy(nova -> data, A -> data);
+	strcpy(nova -> hora, A -> hora);
 	nova -> prox = A -> prox;
-	nova -> conteudoarq = copiaConteudo(A->conteudoarq);
+	nova -> conteudoarq = copiaConteudo(A -> conteudoarq);
 	
 	return nova;
 }
 
-Diretorio *buscaUniDest(Unidade *U, char dest[]){
+Diretorio *buscaUniDest(Unidade *U, char dest[]) {
 	
 	Unidade *aux = U;
 	
-	if(aux != NULL){
+	if(aux != NULL) {
 		
-		while(strcmp(aux -> unidade,dest) && aux -> bottom != NULL)
+		while(strcmp(aux -> unidade, dest) && aux -> bottom != NULL)
 			aux = aux -> bottom;
-		if(!strcmp(aux -> unidade,dest))
+		if(!strcmp(aux -> unidade, dest))
 			return aux -> inidir;
 		else
 			return NULL;
@@ -607,15 +607,15 @@ Diretorio *buscaUniDest(Unidade *U, char dest[]){
 		return NULL;
 }
 
-Diretorio *buscaDirDest(Diretorio *D, char dest[]){
+Diretorio *buscaDirDest(Diretorio *D, char dest[]) {
 	
 	Diretorio *aux = D -> head;
 	
-	if(aux != NULL){
+	if(aux != NULL) {
 		
-		while(strcmp(aux -> nomedir,dest) && aux -> tail != NULL)
+		while(strcmp(aux -> nomedir, dest) && aux -> tail != NULL)
 			aux = aux -> tail;
-		if(!strcmp(aux -> nomedir,dest))
+		if(!strcmp(aux -> nomedir, dest))
 			return aux;
 		else
 			return NULL;
@@ -624,11 +624,11 @@ Diretorio *buscaDirDest(Diretorio *D, char dest[]){
 		return NULL;
 }
 
-void insereArqCopiado(Diretorio **dirDest, Arquivo *arqCopiado){
+void insereArqCopiado(Diretorio **dirDest, Arquivo *arqCopiado) {
 	
 	Arquivo *aux = (*dirDest) -> larq, *aux2 = NULL;
 	
-	while(aux != NULL){
+	while(aux != NULL) {
 		
 		aux2 = aux;
 		aux = aux -> prox;
@@ -639,7 +639,7 @@ void insereArqCopiado(Diretorio **dirDest, Arquivo *arqCopiado){
 		aux2 -> prox = arqCopiado;	
 }
 
-void copiaArq(Unidade *U, Diretorio *D, char comand[]){
+void copiaArq(Unidade *U, Diretorio *D, char comand[]) {
 	
 	int i, j;
 	char arq[100], dest[100];
@@ -647,31 +647,31 @@ void copiaArq(Unidade *U, Diretorio *D, char comand[]){
 	Unidade *auxU = U;
 	Diretorio *dirDest;
 	
-	for(i = 6 ; comand[i] != ' ' ; i++)
-		arq[i-6] = comand[i];
-	while(aux != NULL && !strcmp(aux->nomearq,arq))
+	for(i = 6; comand[i] != ' '; i++)
+		arq[i - 6] = comand[i];
+	while(aux != NULL && !strcmp(aux -> nomearq, arq))
 		aux = aux -> prox;
 	if(aux == NULL)
 		printf("O sistema nao pode encontrar o arquivo especificado.\n");
-	else{
+	else {
 		
 		arqCopiado = criaCopiaArq(aux);
 		while(auxU -> top != NULL)
 			auxU = auxU -> top;
-		for(i = i + 1 ,j = 0 ; comand[i] != '\\' ; i++, j++)
+		for(i = i + 1, j = 0; comand[i] != '\\'; i++, j++)
 			dest[j] = comand[i];	
-		dirDest = buscaUniDest(U,dest);
-		if(dirDest != NULL){
+		dirDest = buscaUniDest(U, dest);
+		if(dirDest != NULL) {
 			
-			while(dirDest != NULL && i != strlen(comand)){
+			while(dirDest != NULL && i != strlen(comand)) {
 				
 				dest[0] = '\0';
-				for(i = i + 1 ,j = 0 ; comand[i] != '\\' ; i++, j++)
+				for(i = i + 1, j = 0; comand[i] != '\\'; i++, j++)
 					dest[j] = comand[i];
-				dirDest = buscaDirDest(dirDest,dest);
+				dirDest = buscaDirDest(dirDest, dest);
 			}
 			if(dirDest != NULL)
-				insereArqCopiado(&dirDest,arqCopiado);
+				insereArqCopiado(&dirDest, arqCopiado);
 			else
 				printf("O sistema nao pode encontrar o destino especificado.\n");
 		}	
@@ -680,61 +680,61 @@ void copiaArq(Unidade *U, Diretorio *D, char comand[]){
 	}	
 }
 
-void contaOc(Arquivo *A, char txt[]){
+void contaOc(Arquivo *A, char txt[]) {
 	
 	int i, cont = 0;
 	ConteudoArq *auxC = A -> conteudoarq;
 	Linha *auxL;
 	
-	while(auxC != NULL){
+	while(auxC != NULL) {
 		
 		auxL = auxC -> linha;
-		while(auxL != NULL){
+		while(auxL != NULL) {
 			
-			for(i = 0 ; i < strlen(txt) && txt[i] == auxL -> letra && auxL != NULL; i++)
+			for(i = 0; i < strlen(txt) && txt[i] == auxL -> letra && auxL != NULL; i++)
 				auxL = auxL -> prox;		
 			if(i == strlen(txt))
 				cont++;
 		}
 		auxC = auxC -> bottom;
 	}
-	printf("%d ocorrencias\n",cont);
+	printf("%d ocorrencias\n", cont);
 }
 
-void ignoraMN(Arquivo *A, char txt[]){
+void ignoraMN(Arquivo *A, char txt[]) {
 	
 	int i, cont = 0;
 	ConteudoArq *auxC = A -> conteudoarq;
 	Linha *auxL;
 	
-	while(auxC != NULL){
+	while(auxC != NULL) {
 		
 		auxL = auxC -> linha;
-		while(auxL != NULL){
+		while(auxL != NULL) {
 			
-			for(i = 0 ; i < strlen(txt) && (txt[i] == auxL -> letra || txt[i] == toupper(auxL -> letra)) && auxL != NULL; i++)
+			for(i = 0; i < strlen(txt) && (txt[i] == auxL -> letra || txt[i] == toupper(auxL -> letra)) && auxL != NULL; i++)
 				auxL = auxL -> prox;		
 			if(i == strlen(txt))
 				cont++;
 		}
 		auxC = auxC -> bottom;
 	}
-	printf("%d ocorrencias\n",cont);
+	printf("%d ocorrencias\n", cont);
 }
 
-void contaLin(Arquivo *A, char txt[]){
+void contaLin(Arquivo *A, char txt[]) {
 	
 	int i, cont, contL = 0;
 	ConteudoArq *auxC = A -> conteudoarq;
 	Linha *auxL;
 	
-	while(auxC != NULL){
+	while(auxC != NULL) {
 		
 		cont = 0;
 		auxL = auxC -> linha;
-		while(auxL != NULL){
+		while(auxL != NULL) {
 			
-			for(i = 0 ; i < strlen(txt) && txt[i] == auxL -> letra && auxL != NULL; i++)
+			for(i = 0; i < strlen(txt) && txt[i] == auxL -> letra && auxL != NULL; i++)
 				auxL = auxL -> prox;		
 			if(i == strlen(txt))
 				cont++;
@@ -743,156 +743,156 @@ void contaLin(Arquivo *A, char txt[]){
 			contL++;
 		auxC = auxC -> bottom;
 	}
-	printf("%d linhas\n",contL);
+	printf("%d linhas\n", contL);
 }
 
-void mostraN(Arquivo *A, char txt[]){
+void mostraN(Arquivo *A, char txt[]) {
 	
 	int i, cont, contL = 0;
 	ConteudoArq *auxC = A -> conteudoarq;
 	Linha *L, *auxL;
 	
-	while(auxC != NULL){
+	while(auxC != NULL) {
 		
 		cont = 0;
 		L = auxL = auxC -> linha;
-		while(auxL != NULL){
+		while(auxL != NULL) {
 			
-			for(i = 0 ; i < strlen(txt) && txt[i] == auxL -> letra && auxL != NULL; i++)
+			for(i = 0; i < strlen(txt) && txt[i] == auxL -> letra && auxL != NULL; i++)
 				auxL = auxL -> prox;		
 			if(i == strlen(txt))
 				cont++;
 		}
-		if(cont == 0){
+		if(cont == 0) {
 			
 			while(L != NULL){
 				
-				printf("%c",L->letra);
+				printf("%c", L -> letra);
 				L = L -> prox;
 			}
 			printf("\n");
 		}
 		auxC = auxC -> bottom;
 	}
-	printf("%d linhas\n",contL);
+	printf("%d linhas\n", contL);
 }
 
-void encontraCad(Diretorio *D, char comand[]){
+void encontraCad(Diretorio *D, char comand[]) {
 	
 	int i, j;
 	char op[2], txt[100], arq[100];
 	Arquivo *aux = D -> larq;
 	
-	for(i = 5 ,j = 0 ; j < 2 ; i++, j++)
+	for(i = 5, j = 0; j < 2; i++, j++)
 		op[j] = comand[i];
-	for(i = 9 ,j = 0 ; comand[i] != '"' ; i++, j++)
+	for(i = 9, j = 0; comand[i] != '"'; i++, j++)
 		txt[j] = comand[i];
-	for(i += 2 ,j = 0 ; i < strlen(comand) ; i++, j++)
+	for(i += 2, j = 0; i < strlen(comand); i++, j++)
 		arq[j] = comand[i];
-	while(aux != NULL && !strcmp(arq,aux->nomearq))
+	while(aux != NULL && !strcmp(arq, aux -> nomearq))
 		aux = aux -> prox;						
 	if(aux == NULL)
 		printf("O sistema nao pode encontrar o arquivo especificado.\n");
-	else{
+	else {
 		
 		if(op[1] == 'C')
-			contaOc(aux,txt);
+			contaOc(aux, txt);
 		else if(op[1] == 'I')
-			ignoraMN(aux,txt);
+			ignoraMN(aux, txt);
 		else if(op[1] == 'N')
-			contaLin(aux,txt);
+			contaLin(aux, txt);
 		else if(op[1] == 'V')
-			mostraN(aux,txt);
+			mostraN(aux, txt);
 	}					
 }	
 
-void executaComandoU(Unidade **U, char comand[]){
+void executaComandoU(Unidade **U, char comand[]) {
 	
 	if(comand[1] == ':')
-		buscaUnidade(*U,comand);
-	else if(!strcmp(comand,"Dir"))
+		buscaUnidade(*U, comand);
+	else if(!strcmp(comand, "Dir"))
 		mostraDir((*U) -> inidir);
 	else if(!strcmp(comand,"Cls"))
 		limpaTela();
 	else if(comand[0] == 'C')
-		mudaDir((*U) -> inidir,comand);
+		mudaDir((*U) -> inidir, comand);
 	else if(comand[0] == 'M')
 		criaUni(&(*U),comand);	
 	else if(comand[0] == 'R')
-		removeUni(&(*U),comand);
-	else if(!strcmp(comand,"Doskey"))
+		removeUni(&(*U), comand);
+	else if(!strcmp(comand, "Doskey"))
 		dosKey();
 	else
 		printf("'%s' nao e reconhecido como um comando interno ou externo, um programa operavel ou um arquivo em lotes.\n",comand);											
 }	
 
-void executaComandoD(Unidade *U, Diretorio **D, char comand[]){
+void executaComandoD(Unidade *U, Diretorio **D, char comand[]) {
 	
 	if(!strcmp(comand,"Dir"))
 		mostraDir(*D);
-	else if(!strcmp(comand,"Cls"))
+	else if(!strcmp(comand, "Cls"))
 		limpaTela();
 	else if(comand[0] == 'C' && comand[1] == 'D')
-		mudaDir(*D,comand);	
+		mudaDir(*D, comand);	
 	else if(comand[0] == 'M' && comand[1] == 'D')
-		criaDir(&(*D),comand);	
+		criaDir(&(*D), comand);	
 	else if(comand[0] == 'R')
-		removeDir(&(*D),comand);
+		removeDir(&(*D), comand);
 	else if(comand[0] == 'M' && comand[1] == 'K')
-		criaArq(*D,comand);
+		criaArq(*D, comand);
 	else if(comand[0] == 'C' && strlen(comand) == 4)
-		copiaArq(U,*D,comand);	
+		copiaArq(U, *D, comand);	
 	else if(comand[0] == 'C' && comand[5] == 'c')
-		insereLinhas(*D,comand);
+		insereLinhas(*D, comand);
 	else if(comand[0] == 'D')
-		deletaArq(&(*D),comand);
+		deletaArq(&(*D), comand);
 	else if(comand[0] == 'T')
-		mostraArq(*D,comand);
+		mostraArq(*D, comand);
 	else if(comand[0] == 'F')
-		encontraCad(*D,comand);	
-	else if(!strcmp(comand,"Doskey"))
+		encontraCad(*D, comand);	
+	else if(!strcmp(comand, "Doskey"))
 		dosKey();	
 	else
 		printf("'%s' nao e reconhecido como um comando interno ou externo, um programa operavel ou um arquivo em lotes.\n",comand);					
 }
 
-void executaUni(Unidade *U){
+void executaUni(Unidade *U) {
 	
 	FILE *hist = fopen("historico.txt","a");
 	char comand[100];
 	
-	scanf(" %[^\n]",comand);
-	fputs(comand,hist);
+	scanf(" %[^\n]", comand);
+	fputs(comand, hist);
 	fclose(hist);
-	while(strcmp(comand,"exit")){
+	while(strcmp(comand,"exit")) {
 		
 		FILE *hist = fopen("historico.txt","a");
-		executaComandoU(&U,comand);
-		scanf(" %[^\n]",comand);
-		fputs(comand,hist);
+		executaComandoU(&U, comand);
+		scanf(" %[^\n]", comand);
+		fputs(comand, hist);
 		fclose(hist);	
 	}
 }
 
-void executaDir(Unidade *U, Diretorio *D){
+void executaDir(Unidade *U, Diretorio *D) {
 	
 	FILE *hist = fopen("historico.txt","a");
 	char comand[100];
 	
-	scanf(" %[^\n]",comand);
-	fputs(comand,hist);
+	scanf(" %[^\n]", comand);
+	fputs(comand, hist);
 	fclose(hist);
-	while(strcmp(comand,"exit")){
+	while(strcmp(comand,"exit")) {
 		
 		FILE *hist = fopen("historico.txt","a");
-		executaComandoD(U,&D,comand);
-		scanf(" %[^\n]",comand);
-		fputs(comand,hist);
+		executaComandoD(U, &D, comand);
+		scanf(" %[^\n]", comand);
+		fputs(comand, hist);
 		fclose(hist);	
 	}
 }
 
-int main(void){
+int main(void) {
 	
 	FILE *hist = fopen("historico.txt","w");
 	Unidade *U = NULL;
